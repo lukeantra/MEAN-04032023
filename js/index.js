@@ -406,7 +406,7 @@ const flatten = () => {
 
 console.log(flatten(arr2));
 
-// example
+
 
 // //day3
 
