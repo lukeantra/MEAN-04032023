@@ -367,45 +367,44 @@
 
 // console.log(obj2);
 
-const arr = [
-  {name: 'AA', age: 1},
-  {name: 'BB', age: 2},
-  {name: 'CC', age: 3},
-];
+// const arr = [
+//   {name: 'AA', age: 1},
+//   {name: 'BB', age: 2},
+//   {name: 'CC', age: 3},
+// ];
 
-// {AA: 1, BB: 2, CC: 3}
+// // {AA: 1, BB: 2, CC: 3}
 
-const foo = (arr) => {
-    return arr.reduce((acc, cur) => {return {...acc, [cur.name]: cur.age} }, {})
-}
+// const foo = (arr) => {
+//     return arr.reduce((acc, cur) => {return {...acc, [cur.name]: cur.age} }, {})
+// }
 
-console.log(foo(arr));
+// console.log(foo(arr));
 
-const arr2 = [
-  'AAPL',
-  'MSFT',
-  'BAC',
-  ['JPM', 'TSLA'],
-  ['DOW', 'COIN', 'MMM']
-]
+// const arr2 = [
+//   'AAPL',
+//   'MSFT',
+//   'BAC',
+//   ['JPM', 'TSLA'],
+//   ['DOW', 'COIN', 'MMM']
+// ]
 
-// ['AAPL', 'MSFT', 'BAC', 'JPM', 'TSLA', 'DOW', 'COIN', 'MMM']
+// // ['AAPL', 'MSFT', 'BAC', 'JPM', 'TSLA', 'DOW', 'COIN', 'MMM']
 
-const flatten = () => {
-  return arr2.reduce(
-    (acc, curr) => {
-      if (Array.isArray(curr)) {
-        return [...acc, ...curr];
-      }
-      else {
-        return [...acc, curr];
-      }
-    }, []
-  )
-}
+// const flatten = () => {
+//   return arr2.reduce(
+//     (acc, curr) => {
+//       if (Array.isArray(curr)) {
+//         return [...acc, ...curr];
+//       }
+//       else {
+//         return [...acc, curr];
+//       }
+//     }, []
+//   )
+// }
 
-console.log(flatten(arr2));
-
+// console.log(flatten(arr2));
 
 
 // //day3
