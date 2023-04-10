@@ -1,4 +1,4 @@
-
+console.clear();
 // //day1
 // javascript vs node.js
 // javascipt = ECMAScript + web.api
@@ -179,8 +179,12 @@
 // //Day2
 
 // Loop
-// const arr = [1, 2, 3, 4, 5, 6];
-// console.log(arr);
+// const arr = [1, 2, 3, 4, 5, 'test'];
+// arr = {
+//   '0': 1,
+//   '1': 2
+// }
+// console.log(arr['5']);
 
 // // const obj = {a: 1, 1: 2, 2: 3, 3: 4}
 // console.log(arr[2]);
@@ -188,16 +192,27 @@
 // // console.log(obj.'2');
 // // console.log(obj['a']);
 
-// for (const i = 0; i < arr.length; i++) {
-//     console.log(arr[i]);
+// for (let i = 0; i < arr.length; i++) {
+//   console.log(typeof i);
 // }
+
 
 // // for (let item of arr) {
 // //     console.log(item);
 // // }
 
-// for (const i in arr) {
-//     console.log(arr[i]));
+// const obj = {
+//   name: 'TT',
+//   age: 23
+// };
+
+// // keys, values, entries
+// Object.entries(obj).forEach(([key, val]) => {
+//   console.log('key: ', key, 'value: ', val);
+// });
+
+// for (let key in arr) {
+//   console.log(typeof key, key);
 // }
 
 //let vs. const
@@ -311,13 +326,14 @@
 // const obj = {
 //     name: 'Dio',
 //     age: 18,
-// }
+// };
+// // const [a, b, c] = [1, 2, 3, 4, 5, 6];
 
-// const name = obj.name;
-// const age = obj.age;
+// // const name = obj.name;
+// // const age = obj.age;
 
-// const {name, age } = obj;
-// console.log(name);
+// const {name: myName, age: myAge} = obj;
+// console.log(myName, myAge);
 
 // const [first, last] = [1, 2];
 // console.log(first);
@@ -406,10 +422,59 @@
 
 // console.log(flatten(arr2));
 
-
 // //day3
+//^ ~~~~~~interview question~~~~~~~~~~~~
+// const first = [
+//     { userid: 2, name: 'Velen' },
+//     { userid: 56, name: 'Illidan' },
+//     { userid: 23, name: 'Muradin' },
+//     { userid: 12, name: 'Sylvanas' },
+//     { userid: 44, name: 'Cenarius' },
+//     { userid: 4, name: 'Gul\'Dan' }
+// ];
+// const second = [
+//     { userid: 2, role: 'Mage' },
+//     { userid: 4, role: 'Worlock' },
+//     { userid: 56, role: 'Demon Hunter' },
+//     { userid: 66, role: 'Druid' },
+//     { userid: 87, role: 'Shaman' },
+//     { userid: 12, role: 'Hunter' },
+// ];
+// // const thired,fourth...
+
+// function solution(...args) {
+//   const arr = args.reduce((acc, cur) => {
+//     return [...acc, ...cur];
+//   }, []);
+//   const map = {};
+
+//   arr.forEach((ele) => {
+//     map[ele.userid] = {
+//       ...{userid: null, name: null, role: null},
+//       ...map[ele.userid],
+//       ...ele,
+//     };
+//   });
+
+//   console.log(Object.values(map));
+// }
+// solution(first, second);
+
+
+// {
+//   2: { userid: 2, name: 'Velen', role: 'Mage' },
+//   56: { userid: 56, name: 'Illidan' },
+  
+// }
+
+// [
+//   { userid: 2, name: 'Velen', role: 'Mage' },
+//   { userid: 44, name: 'Cenarius', role: null },
+//   ...
+// ]
 
 // object copy
+
 
 // iife
 
