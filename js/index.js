@@ -464,7 +464,7 @@ console.clear();
 // {
 //   2: { userid: 2, name: 'Velen', role: 'Mage' },
 //   56: { userid: 56, name: 'Illidan' },
-  
+
 // }
 
 // [
@@ -473,20 +473,195 @@ console.clear();
 //   ...
 // ]
 
-// object copy
+// // object copy: shallow copy vs. deep copy
+// const obj = {
+//   name: 'Jojo', 
+//   age: 30,
+//   arr: [1, 2, 3],
+//   date: new Date(),
+//   // foo: function() {}
+// };
+// // spread operator, json parse & json stringigfy, structuredClone, cloneDeep()
 
+// // const objcopy = obj;
+// // const objcopy = {...obj, arr: [...obj.arr]};
+// // obj.arr[0] = 56;
+// // console.log(objcopy.arr[0]);
+
+// // const mark = JSON.stringify(obj);
+// // const objcopy = JSON.parse(JSON.stringify(obj));
+// const objcopy = structuredClone(obj);
+// // obj.arr[0] = 56;
+// console.log(obj, objcopy);
 
 // iife
-
-// closure
+// (function () {
+//   console.log(2222);
+// })();
+// }());
 
 // currying
+//^ ~~~~~~interview question~~~~~~~~~~~~
+// function limitedFunction(a) {
 
-// this
+//   return function(b) {
+//     return a + b;
+//   }
+// }
+
+// const fn = limitedFunction(14); // c
+// console.log( fn(5) ); // 9
+
+// class CC {
+//   c = 123;
+
+//   foo() {
+//     console.log(this.c);
+//   }
+// }
+// const cc = new CC(); // c = 123
+// cc.foo()
+
+// const callback1 = (a) => a + 2; // 6
+// const callback2 = (b) => b * 2; // 12
+// const callback3 = (c) => c - 2; // 10
+// // const callbackN
+
+// console.log( runAll(callback1, callback2, callback3)(6) ); // 10
+
+// function runAll(...args) {
+
+//   return function(num) {
+//     return args.reduce((acc, cur) => cur(acc), num);
+//     // return callback3(callback2(callback1(num)));
+//     // let toRet = num;
+//     // for(const callback of args) {
+//     //   toRet = callback(toRet);
+//     // }
+//     // return toRet;
+//   }
+// }
+
+// function limitedFunction(a) {
+//   return function(b) {
+//     return a + b;
+//   }
+// }
+// const fn = limitedFunction(4); // c
+// fn(5);
+
+// const target = function(a, b, c) {
+//   return a * b - c;
+// }
+// const fn  = limitedFunction(3, target);
+// fn(3, 4, 4); // 7  // counter[3]
+// fn(6, 4, 4); // 10 // counter[2]
+// fn(8, 4, 4); // over limited! // counter[1]
+// fn(3, 7, 4); // over limited! // counter[0]
+// fn(4, 4, 4); // over limited! // counter[0]
+// fn(1, 4, 4); // over limited! // counter[0]
+// fn(11, 4, 4); // over limited! // counter[0]
+
+// const fn1  = limitedFunction(6, target); 
+// fn1(3, 4, 4); // 7  // counter[6]
+// fn1(6, 4, 4); // 10 // counter[5]
+// fn1(8, 4, 4); // over limited! // counter[4]
+// fn1(3, 7, 4); // over limited! // counter[3]
+// fn1(4, 4, 4); // over limited! // counter[2]
+// fn1(1, 4, 4); // over limited! // counter[1]
+// fn1(11, 4, 4); // over limited! // counter[0]
+
+// function limitedFunction(num, target) {
+
+//   let counter = num;
+
+//   return function(...args) { // rest
+//     if (counter > 0) {
+//       console.log(target(...args)); // spread 
+//       counter--;
+//     } else {
+//       console.log('over limited!');
+//     }
+//   }
+// }
+// const target3 = ele => {
+//   console.log(ele + 3);
+// }
+// const target5 = ele => {
+//   console.log(ele + 5);
+// }
+// const target100 = ele => {
+//   console.log(ele + 100);
+// }
+// const target = function (n) {
+//   return ele => {
+//     console.log(ele + n);
+//   }
+// }
+// const arr = [1, 2, 3];
+// arr.forEach(target(6));
+
+// this: use in a function, target to a obj
+// x = 3.14;       // This will not cause an error.
+// myFunction();
+
+// function myFunction() {
+//   "use strict";
+//   y = 3.14;   // This will cause an error
+// }
+// (function() {
+//   console.log(this);
+// })()
+
+hello = 'hi';
+console.log(this.hello);
+
+const obj = {
+  name: 'TT', 
+
+  subobj: {
+    age: 45,
+    foo: function() {
+      // "use strict";
+      console.log('foo: ', this); //----- <--------
+  
+      const bar = () => {
+        console.log('bar: ', this);
+      }
+      bar(); //----- <--------
+    }
+  },
+
+  baz: () => {
+    console.log('baz: ', this.hello);
+  }
+};
+obj.baz();
+
+
+// const obj = {
+//   hello: 'David'
+// }
+
+// function getName(num1, num2) { // n
+//   console.log(this.hello, num1, num2);
+// }
+// const getNamePlus = getName.bind(obj); // 1 arg
+// getNamePlus(1, 2);
+
+// getName.call(obj, 1, 2); // 1 + n
+// getName.apply(obj, [1, 2]); // 1 + [n]
+
+// rxjs, of, from
 
 // call apply bind
 
 //arrow funtion
+// const foo = () => {}
+// const bar = function() {
+  
+// }
+// bar(1, 2, 3, 4);
 
 // //Day4
 
@@ -503,3 +678,9 @@ console.clear();
 // //Day5
 
 // todolist 
+
+// const a = 0;
+
+// export function foo() {
+//   console.log(a);
+// }
