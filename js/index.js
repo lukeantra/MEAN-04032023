@@ -1,5 +1,5 @@
 console.clear();
-// //day1
+// //day1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // javascript vs node.js
 // javascipt = ECMAScript + web.api
 // node.js = ECMAScript + node.api
@@ -176,8 +176,7 @@ console.clear();
 
 // Prototype chain
 
-// //Day2
-
+// //Day2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Loop
 // const arr = [1, 2, 3, 4, 5, 'test'];
 // arr = {
@@ -422,7 +421,7 @@ console.clear();
 
 // console.log(flatten(arr2));
 
-// //day3
+// Day3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //^ ~~~~~~interview question~~~~~~~~~~~~
 // const first = [
 //     { userid: 2, name: 'Velen' },
@@ -619,13 +618,13 @@ console.clear();
 // const obj = {
 //   name: 'TT', 
 
-//   subobj: {
+//   MyPromise: {
 //     age: 45,
-//     foo: function() {
+//     foo: constructor() {
 //       // "use strict";
 //       console.log('foo: ', this); //----- <--------
-  
-//       const bar = () => {
+
+//       const executer = () => {
 //         console.log('bar: ', this);
 //       }
 //       bar(); //----- <--------
@@ -659,19 +658,203 @@ console.clear();
 //arrow funtion
 // const foo = () => {}
 // const bar = function() {
-  
+
 // }
 // bar(1, 2, 3, 4);
 
-// //Day4
-
+//Day4 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Event Loop
+// var vs. 
+
+// for (let i = 0; i < 5; i++) {
+//   setTimeout(() => console.log(i), (5 - i) * 1000);
+// } 
+
+// call stack; [() => console.log(i), (i = 4)] 
+/* 
+  web api: 
+    () => console.log(i), ++ 5s, (i = 0);
+    () => console.log(i), ++ 4s, (i = 1);
+    () => console.log(i), ++ 3s, (i = 2);
+  */
+/* 
+microtask queue
+macrotask queue [
+   () => console.log(i), (i = 3);
+   () => console.log(i), (i = 2);
+   () => console.log(i), (i = 1);
+   () => console.log(i), (i = 0);
+ ]
+*/
+
+// // Callback function callback hell
+// const foo = () => console.log('foooo');
+// const randomTime = () => Math.floor(Math.random() * 6);
+
+// const callFnByRandomTime = (callback) => {
+//   const timer = randomTime();
+//   console.log(`waiting ${timer}s`);
+
+//   setTimeout(callback, timer * 1000); 
+// }
+
+// // callFnByRandomTime(foo);
+// callFnByRandomTime(() => {
+//   callFnByRandomTime(() => {
+//     callFnByRandomTime(() => {
+//       callFnByRandomTime(() => {
+//         callFnByRandomTime(() => {
+//           callFnByRandomTime(() => {
+//             callFnByRandomTime(() => {
+//               callFnByRandomTime(() => {
+//                 foo();
+//               });
+//             });
+//           });
+//         });
+//       });
+//     });
+//   });
+// });
 
 // XHR
+// function getUser(id) {
+//   const baseUrl = 'https://jsonplaceholder.typicode.com/users';
 
-// Callback function callback hell
+//   return new Promise((res, rej) => {
+//     const xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function () {
+//       if (this.readyState == 4 && this.status == 200) {
+//         // Typical action to be performed when the document is ready:
+//         res(JSON.parse(xhttp.response));
+//       }
+//     };
+//     xhttp.open("GET", [baseUrl, id].join('/'), true);
+//     xhttp.send();
+//   });
+// }
+// function print(data) {
+//   console.log(data);
+// }
+// 6, 4, 2
+// getUser(6)
+//   .then((data) => {
+//     print(data);
+//     return getUser(4);
+//   })
+//   .then((data) => {
+//     print(data);
+//     return getUser(2);
+//   })
+//   .then((data) => {
+//     print(data);
+//   })
+//   .catch(console.log);
 
-// Promise
+// async await
+// (async function () {
+//   try {
+//     const user6 = await getUser(6);
+//     print(user6);
+
+//     const user4 = await getUser(4);
+//     print(user4);
+
+//     const user2 = await getUser(2);
+//     print(user2);
+//   } catch (error) {
+//     print(error);
+//   }
+// })();
+
+// (async function(): Promies<number> {
+//   return 1;
+// })();
+
+// (async function(): Promies<Promist<number>> {
+//   return Promise.resolve(1);
+// })();
+
+// getUser(6, (response) => {
+//   print(response);
+
+//   getUser(4, (response) => {
+//     print(response);
+
+//     getUser(2, (response) => {
+//       print(response);
+//     });
+//   });
+// });
+
+// // Promise
+class MyPromise {
+  thenQueue = [];
+
+  constructor(executor) {
+    executor(this.#resolve, this.#reject.bind(this));
+  }
+  #resolve = (resData) => {
+    // console.log(this.thenQueue);
+    setTimeout(() => {
+      let toRet = resData;
+      for (const fn of this.thenQueue) {
+        toRet = fn(toRet);
+      }
+    }, 0);
+  }
+  #reject(rejData) {
+    console.log(rejData);
+  }
+
+  then(thenFn) {
+    this.thenQueue.push(thenFn);
+    return this;
+  }
+  catch() { }
+}
+
+// const callback1 = (a) => a + 2; // 6
+// const callback2 = (b) => b * 2; // 12
+// const callback3 = (c) => c - 2; // 10
+// // const callbackN
+
+// console.log( runAll(callback1, callback2, callback3)(6) ); // 10
+
+new MyPromise((resolve, reject) => {
+  console.log('hello');
+  resolve('Antra');
+})
+  .then((data) => {
+    console.log(data);
+    return 'hi1';
+  })
+  .then((data) => {
+    console.log(data);
+    return 'he2';
+  })
+  .then((data) => {
+    console.log(data);
+    return 'hi3';
+  })
+  .then((data) => {
+    console.log(data);
+    return 'hi4';
+  })
+  .then((data) => {
+    console.log(data);
+    return 'hw5';
+  })
+  .then((data) => {
+    console.log(data);
+  })
+ console.log('world');
+  // .then((data) => {
+  //   console.log(data);
+  // })
+  // .catch(err => console.log(err));
+
+  // task queue: [resolve('Antra');]
 
 // Myfetch
 
@@ -697,3 +880,17 @@ console.clear();
 // }
 
 // console.log(sum(2, 3)); // This line won't be executed
+
+
+// ~~~~~~~~~~~~~~~~~~~ interview question ~~~~~~~~~~~~~~~~~~~
+// For example:
+// If,
+const add = (a, b) => a + b;
+const multiplyByTwo = (c) => c * 2;
+// Then,
+
+// example 1 // await promisifyFunction(add)(1, 1) should return 2
+
+// example 2 // await promisifyFunction(multiplyByTwo)(3).then(val => val + 1) should return 7
+
+function promisifyFunction() {}
