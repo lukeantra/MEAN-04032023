@@ -613,30 +613,30 @@ console.clear();
 //   console.log(this);
 // })()
 
-hello = 'hi';
-console.log(this.hello);
+// hello = 'hi';
+// console.log(this.hello);
 
-const obj = {
-  name: 'TT', 
+// const obj = {
+//   name: 'TT', 
 
-  subobj: {
-    age: 45,
-    foo: function() {
-      // "use strict";
-      console.log('foo: ', this); //----- <--------
+//   subobj: {
+//     age: 45,
+//     foo: function() {
+//       // "use strict";
+//       console.log('foo: ', this); //----- <--------
   
-      const bar = () => {
-        console.log('bar: ', this);
-      }
-      bar(); //----- <--------
-    }
-  },
+//       const bar = () => {
+//         console.log('bar: ', this);
+//       }
+//       bar(); //----- <--------
+//     }
+//   },
 
-  baz: () => {
-    console.log('baz: ', this.hello);
-  }
-};
-obj.baz();
+//   baz: () => {
+//     console.log('baz: ', this.hello);
+//   }
+// };
+// obj.baz();
 
 
 // const obj = {
@@ -679,8 +679,21 @@ obj.baz();
 
 // todolist 
 
-// const a = 0;
+// 'use strict'
 
-// export function foo() {
-//   console.log(a);
+// this.hello = 'hello';
+// console.log(this);
+// function foo() {
+//   console.log(this.hello);
 // }
+// module.exports.foo = foo;
+// console.log(module.exports);
+
+// "use strict";
+
+// function sum(a, b) {
+//   total = a + b; // ReferenceError: total is not defined
+//   return total;
+// }
+
+// console.log(sum(2, 3)); // This line won't be executed
