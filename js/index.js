@@ -1,5 +1,6 @@
-console.clear();
+console.clear(); // javascript
 // //day1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+console.log('九宝是小狗');
 // javascript vs node.js
 // javascipt = ECMAScript + web.api
 // node.js = ECMAScript + node.api
@@ -98,7 +99,8 @@ console.clear();
 
 // foo();
 
-// oop
+// oop : 2726
+// https://www.freecodecamp.org/news/require-module-in-node-js-everything-about-module-require-ccccd3ad383/
 
 // function Person(name, age) {
 //     this.name = name;
@@ -145,6 +147,26 @@ console.clear();
 //     }
 // }
 
+// function Person(name, age) {
+//   let _name = name;
+//   let _age = age;
+  
+//   Object.defineProperty(this, 'name', {
+//     get: function() {
+//       return _name;
+//     },
+//     set: function(vname) {
+//       _name = vname;
+//     }
+//   });
+// }
+
+// const p = new Person('David', 55);
+// console.log(p);
+// console.log(p.name);
+// p.name = 'Dio';
+// console.log(p.name);
+
 // const p =  new Person('Dio', 18);
 // p.walk();
 
@@ -174,7 +196,7 @@ console.clear();
 // e.walk();
 
 
-// Prototype chain
+// Prototype chain leetcode 2618
 
 // //Day2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Loop
@@ -294,24 +316,24 @@ console.clear();
 // console.log(ouput3);
 
 // Array.prototype.myReduce = function (...args) {
-//     // let res;
-//     // let index;
-//     // if(args.length === 1) { // 
-//     //     res = this[0];
-//     //     index = 1;
-//     // } else {
-//     //     res = args[1];
-//     //     index = 0;
-//     // }
-//     // for (let i = index; i < this.length; i++) {
-//     //     res = args[0](res, this[i]);
-//     // }
-//     // return res;
-//     // let [acc, index] = args.length === 1 ? [this[0], 1] : [args[1], 0];
-//     // for (let i = index; i < this.length; i++) {
-//     //     acc = args[0](acc, this[i], i, this);
-//     // }
-//     // return acc;
+    // let res;
+    // let index;
+    // if(args.length === 1) { // 
+    //     res = this[0];
+    //     index = 1;
+    // } else {
+    //     res = args[1];
+    //     index = 0;
+    // }
+    // for (let i = index; i < this.length; i++) {
+    //     res = args[0](res, this[i]);
+    // }
+    // return res;
+    // let [acc, index] = args.length === 1 ? [this[0], 1] : [args[1], 0];
+    // for (let i = index; i < this.length; i++) {
+    //     acc = args[0](acc, this[i], i, this);
+    // }
+    // return acc;
 // }
 
 // arr = [175, 50, 25];
@@ -499,7 +521,7 @@ console.clear();
 // })();
 // }());
 
-// currying
+// currying leetcode2704
 //^ ~~~~~~interview question~~~~~~~~~~~~
 // function limitedFunction(a) {
 
